@@ -210,7 +210,7 @@ int main() {
     fs::path projectRoot = getProjectRoot();
 
     // Concatene o caminho da raiz com o nome do arquivo usando fs::path
-    fs::path fullPath = projectRoot / quantityString /filename;
+    fs::path fullPath = projectRoot / "ForestInsight" /quantityString /filename;
 
     // Lê os números do arquivo concatenado com o caminho da pasta raiz
     std::vector<int> numbers = readNumbersFromFile(fullPath.string());
