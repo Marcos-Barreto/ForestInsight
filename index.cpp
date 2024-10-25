@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <sstream>
 #include <filesystem>  // Biblioteca para manipulação de arquivos e diretórios
+#include <limits>
 
 namespace fs = std::filesystem;  // Definindo um namespace mais curto
 
@@ -105,6 +106,14 @@ void displayQuantityMenu() {
     std::cout << "7. 10k\n";
     std::cout << "8. 50k\n";
     std::cout << "9. 100k\n";
+}
+
+void enter_to_exit( )
+{
+    std::cout << "Pressione enter para finalizar...";
+    if( !std::cin ) std::cin.clear( );
+    std::cin.ignore( std::numeric_limits<std::streamsize>::max( ), '\n' );
+    std::cin.get( );
 }
 
 void displayTypeMenu() {
@@ -210,7 +219,7 @@ int main() {
     fs::path projectRoot = getProjectRoot();
 
     // Concatene o caminho da raiz com o nome do arquivo usando fs::path
-    fs::path fullPath = projectRoot / "ForestInsight" /quantityString /filename;
+    fs::path fullPath = projectRoot /quantityString /filename;
 
     // Lê os números do arquivo concatenado com o caminho da pasta raiz
     std::vector<int> numbers = readNumbersFromFile(fullPath.string());
@@ -232,7 +241,7 @@ int main() {
 
     // Exibe os resultados
     std::cout << "Arquivo: " << fullPath << std::endl;
-    std::cout << "Método de ordenação: ";
+    std::cout << "Metodo de ordenacao: ";
     if (method == 1)
         std::cout << "Shell Sort";
     else if (method == 2)
@@ -240,7 +249,8 @@ int main() {
     else
         std::cout << "Quick Sort";
 
-    std::cout << "\nTempo de execução: " << std::fixed << std::setprecision(8) << elapsed << " segundos" << std::endl;
+    std::cout << "\nTempo de execucao: " << std::fixed << std::setprecision(8) << elapsed << " segundos" << std::endl;
 
-    return 0;
+    // std::cout << "Pressione enter para finalizar...";
+    enter_to_exit();
 }
